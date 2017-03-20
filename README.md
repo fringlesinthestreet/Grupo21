@@ -5,7 +5,7 @@ Repositorio principal para el desarrollo del proyecto
 
 | Nombre | Github | Email |
 | :----- | :----- | :------- |
-| BENJAMÍN IGNACIO CÁRCAMO CALVANESE | X | bicarcamo@uc.cl |
+| BENJAMÍN IGNACIO CÁRCAMO CALVANESE | fringlesinthestreet | bicarcamo@uc.cl |
 | ALEJANDRO JOSÉ GUTIÉRREZ RIESCO | X | ajgutierrez@uc.cl |
 | SANTIAGO EXEQUIEL LIRA IHNEN | X | selira@uc.cl |
 
