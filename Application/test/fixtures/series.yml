@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  ano: 2017-04-29
+  lenguaje: MyString
+  director: MyString
+  actores: MyString
+  genero: MyString
+  resumen: MyText
+
+two:
+  nombre: MyString
+  ano: 2017-04-29
+  lenguaje: MyString
+  director: MyString
+  actores: MyString
+  genero: MyString
+  resumen: MyText
