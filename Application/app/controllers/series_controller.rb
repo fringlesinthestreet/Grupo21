@@ -4,7 +4,7 @@ class SeriesController < ApplicationController
   # GET /series
   # GET /series.json
   def index
-    @series = Serie.all
+    @series = Series.all
   end
 
   # GET /series/1
@@ -14,7 +14,7 @@ class SeriesController < ApplicationController
 
   # GET /series/new
   def new
-    @series = Serie.new
+    @series = Series.new
   end
 
   # GET /series/1/edit
@@ -24,11 +24,11 @@ class SeriesController < ApplicationController
   # POST /series
   # POST /series.json
   def create
-    @series = Serie.new(series_params)
+    @series = Series.new(series_params)
 
     respond_to do |format|
       if @series.save
-        format.html { redirect_to @series, notice: 'Serie was successfully created.' }
+        format.html { redirect_to @series, notice: 'Series was successfully created.' }
         format.json { render :show, status: :created, location: @series }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SeriesController < ApplicationController
   def update
     respond_to do |format|
       if @series.update(series_params)
-        format.html { redirect_to @series, notice: 'Serie was successfully updated.' }
+        format.html { redirect_to @series, notice: 'Series was successfully updated.' }
         format.json { render :show, status: :ok, location: @series }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class SeriesController < ApplicationController
   def destroy
     @series.destroy
     respond_to do |format|
-      format.html { redirect_to series_url, notice: 'Serie was successfully destroyed.' }
+      format.html { redirect_to series_index_url, notice: 'Series was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +64,11 @@ class SeriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_series
-      @series = Serie.find(params[:id])
+      @series = Series.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def series_params
-      params.require(:series).permit(:nombre, :ano, :actores, :string, :director, :pais, :genero, :resumen)
+      params.require(:series).permit(:nombre, :ano, :lenguaje, :director, :actores, :genero, :resumen)
     end
 end
