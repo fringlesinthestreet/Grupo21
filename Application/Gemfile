@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # devise is used for user's CRUD
 gem 'devise', '~> 4.2', '>= 4.2.1'
 
+# For Facebook login
+gem 'omniauth-facebook'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
