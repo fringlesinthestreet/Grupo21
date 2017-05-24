@@ -4,7 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :authentication_keys => [:login]
+
+  # Relaciones
   has_many :tv_shows, :dependent => :destroy
+  # has_many :children, :class_name => 'User', :dependent => :destroy
+  # belongs_to :parent, :class_name => 'User'
+
+  # Validaciones:
   validates :name, uniqueness: {:case_sensitive => false}
   validates :email, :name, :birthday, :presence => true
   validate :validate_username
@@ -20,8 +26,6 @@ class User < ApplicationRecord
       where(conditions.to).first
     end
   end
-
-
 
   private
 
