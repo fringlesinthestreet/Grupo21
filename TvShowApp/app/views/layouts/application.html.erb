@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TvShowApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <% if user_signed_in? %>
+    <p> Hello, <%= current_user.name %> - <%= link_to "Log out", destroy_user_session_path, :method => 'delete' %> </p>
+    <p> See your <%= link_to "Profile", current_user %> | Go <%= link_to "Home", tv_shows_path %></p>
+    <br>
+    <% else %>
+    <p> ¡Hello there!, please: <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> </p>
+    <% end %>
+
+    <% if false # Para Comentar %>
+      <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+
+
+    <br>
+    <% unless root_path? %>
+      <%= link_to "Back", :back, :class => "navbar-brand" %>
+    <% end %>
+  </body>
+</html>

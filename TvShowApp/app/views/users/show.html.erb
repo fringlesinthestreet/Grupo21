@@ -1,0 +1,43 @@
+<h1>Profile Information</h1>
+<p>Welcome to the profile section, <%= @user.name %></p>
+<br>
+<body>
+<p> If you want to edit your profile, please go to <%= link_to "Edit Profile", edit_user_registration_path %></p>
+<br>
+<p> wow! much information! </p>
+<br>
+
+<% if current_user.id == 0 # es el admin %>
+
+<h2>Profiles in the Site </h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mail</th>
+      <th>Full Name</th>
+      <th>age (years)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= u.name %></td>
+        <td><%= u.email %></td>
+        <td><%= full_name(u) %></td>
+        <td><%= age %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <% ##@users.each do |t|  %>
+
+
+
+<% end %>
+
+</body>

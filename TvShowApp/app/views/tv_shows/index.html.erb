@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tv Shows</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Genre</th>
+      <th>Country</th>
+      <th>Language</th>
+      <th>Actors</th>
+      <th>Director</th>
+      <th>Seasons</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tv_shows.each do |tv_show| %>
+      <tr>
+        <td><%= tv_show.name %></td>
+        <td><%= tv_show.genre %></td>
+        <td><%= tv_show.country %></td>
+        <td><%= tv_show.language %></td>
+        <td><%= tv_show.actors %></td>
+        <td><%= tv_show.director %></td>
+        <td><%= tv_show.seasons %></td>
+        <td><%= tv_show.user.name%></td>
+        <td><%= link_to 'Detail', tv_show %></td>
+        <% if user_signed_in? %>
+          <% if tv_show.user == current_user or current_user.id == 0 %>
+            <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
+            <td><%= link_to 'Delete', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if user_signed_in? %>
+  <%= link_to 'New Tv Show', new_tv_show_path %>
+<% end %>
