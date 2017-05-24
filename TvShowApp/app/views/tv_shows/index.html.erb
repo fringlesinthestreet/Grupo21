@@ -18,24 +18,75 @@
   </thead>
 
   <tbody>
-    <% @tv_shows.each do |tv_show| %>
-      <tr>
-        <td><%= tv_show.name %></td>
-        <td><%= tv_show.genre %></td>
-        <td><%= tv_show.country %></td>
-        <td><%= tv_show.language %></td>
-        <td><%= tv_show.actors %></td>
-        <td><%= tv_show.director %></td>
-        <td><%= tv_show.seasons %></td>
-        <td><%= tv_show.user.name%></td>
-        <td><%= link_to 'Detail', tv_show %></td>
-        <% if user_signed_in? %>
-          <% if tv_show.user == current_user or current_user.id == 0 %>
+    <% if user_signed_in? %>
+
+      <% if current_user.admin? %>
+        <% @tv_shows.each do |tv_show| %>
+          <tr>
+            <td><%= tv_show.name %></td>
+            <td><%= tv_show.genre %></td>
+            <td><%= tv_show.country %></td>
+            <td><%= tv_show.language %></td>
+            <td><%= tv_show.actors %></td>
+            <td><%= tv_show.director %></td>
+            <td><%= tv_show.seasons %></td>
+            <td><%= tv_show.user.name%></td>
+            <td><%= link_to 'Detail', tv_show %></td>
             <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
             <td><%= link_to 'Delete', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+
+      <% else %>
+
+        <% @my_tv_shows.each do |tv_show| %>
+          <tr>
+            <td><%= tv_show.name %></td>
+            <td><%= tv_show.genre %></td>
+            <td><%= tv_show.country %></td>
+            <td><%= tv_show.language %></td>
+            <td><%= tv_show.actors %></td>
+            <td><%= tv_show.director %></td>
+            <td><%= tv_show.seasons %></td>
+            <td><%= tv_show.user.name%></td>
+            <td><%= link_to 'Detail', tv_show %></td>
+            <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
+            <td><%= link_to 'Delete', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        <% @tv_shows.each do |tv_show| %>
+          <% if tv_show.user.admin? %>
+            <tr>
+              <td><%= tv_show.name %></td>
+              <td><%= tv_show.genre %></td>
+              <td><%= tv_show.country %></td>
+              <td><%= tv_show.language %></td>
+              <td><%= tv_show.actors %></td>
+              <td><%= tv_show.director %></td>
+              <td><%= tv_show.seasons %></td>
+              <td><%= tv_show.user.name%></td>
+              <td><%= link_to 'Detail', tv_show %></td>
+            </tr>
           <% end %>
         <% end %>
-      </tr>
+
+      <% end %>
+    <% else %>
+      <% @tv_shows.each do |tv_show| %>
+        <% if tv_show.user.admin? %>
+          <tr>
+            <td><%= tv_show.name %></td>
+            <td><%= tv_show.genre %></td>
+            <td><%= tv_show.country %></td>
+            <td><%= tv_show.language %></td>
+            <td><%= tv_show.actors %></td>
+            <td><%= tv_show.director %></td>
+            <td><%= tv_show.seasons %></td>
+            <td><%= tv_show.user.name%></td>
+            <td><%= link_to 'Detail', tv_show %></td>
+          </tr>
+        <% end %>
+      <% end %>
     <% end %>
   </tbody>
 </table>

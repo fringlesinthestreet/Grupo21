@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :authentication_keys => [:login]
-  has_many :tv_shows
+  has_many :tv_shows, :dependent => :destroy
   validates :name, uniqueness: {:case_sensitive => false}
-  validates :email, :password, :name, :birthday, :presence => true
+  validates :email, :name, :birthday, :presence => true
   validate :validate_username
   validate :validate_age
 

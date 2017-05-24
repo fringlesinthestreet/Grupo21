@@ -7,14 +7,9 @@ class TvShowsController < ApplicationController
   # GET /tv_shows.json
 
   def index
+    @tv_shows = TvShow.all
     if user_signed_in?
-      if current_user.id == 0
-        @tv_shows = TvShow.all
-      else
-        @tv_shows = TvShow.where(["user_id = :u or user_id = :w", {u: current_user.id, w: '0'}])
-      end
-    else
-      @tv_shows = TvShow.where(["user_id = 0"])
+      @my_tv_shows = TvShow.where(["user_id = :u", {u: current_user.id}])
     end
   end
 
@@ -70,7 +65,7 @@ class TvShowsController < ApplicationController
   # DELETE /tv_shows/1
   # DELETE /tv_shows/1.json
   def destroy
-    if @tv_show.user == current_user or current_user.id == 0
+    if @tv_show.user == current_user or current_user.admin?
       @tv_show.destroy
       respond_to do |format|
         format.html { redirect_to tv_shows_url, notice: 'Tv show was successfully destroyed.' }
