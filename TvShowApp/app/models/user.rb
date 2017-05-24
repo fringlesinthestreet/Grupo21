@@ -8,16 +8,31 @@ class User < ApplicationRecord
   validates :name, uniqueness: {:case_sensitive => false}
   validates :email, :password, :name, :birthday, :presence => true
   validate :validate_username
-  validate :validate_birthdate
+  validate :validate_age
 
   attr_accessor :login
 
-  def validate_birthdate
-    time = Time.now.strftime("%Y-%m-%d")
-    if time < :birthday.to_s
-      errors.add(:birthday, :invalid)
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(name) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:name)
+      where(conditions.to).first
     end
   end
+
+
+
+  private
+
+  def validate_age
+      if birthday.present? && birthday > 1.years.ago
+          errors.add(:birthday, 'You should be over 1 years old.')
+      elsif birthday < 110.years.ago
+          errors.add(:birthday, 'You should have less than 110 years.')
+      end
+  end
+
 
   def validate_username
     if User.where(email: name).exists?
@@ -25,12 +40,5 @@ class User < ApplicationRecord
     end
   end
 
-  def self.find_for_database_authentication(warden_conditions)
-        conditions = warden_conditions.dup
-        if login = conditions.delete(:login)
-          where(conditions.to_h).where(["lower(name) = :value", { :value => login.downcase }]).first
-        elsif conditions.has_key?(:name)
-          where(conditions.to).first
-        end
-      end
+
 end
