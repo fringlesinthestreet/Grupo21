@@ -16,6 +16,7 @@
     <br>
     <% else %>
     <p> ¡Hello there!, please: <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> </p>
+    <p>Go <%= link_to "Home", tv_shows_path %></p>
     <% end %>
 
     <% if false # Para Comentar %>

@@ -35,4 +35,8 @@
   <%= @tv_show.seasons %>
 </p>
 
-<%= link_to 'Edit', edit_tv_show_path(@tv_show) %> | <%= link_to 'Shows', tv_shows_path %>
+<% if user_signed_in? %>
+  <% if current_user.admin? or current_user.id == @tv_show.user_id %>
+    <%= link_to 'Edit', edit_tv_show_path(@tv_show) %>
+  <% end %>
+<% end %>

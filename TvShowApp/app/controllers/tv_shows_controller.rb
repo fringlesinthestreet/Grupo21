@@ -17,6 +17,14 @@ class TvShowsController < ApplicationController
   # GET /tv_shows/1.json
   def show
     @tv_show = TvShow.find(params[:id])
+    if not @tv_show.user.admin?
+      if user_signed_in?
+        if current_user.id != @tv_show.user_id
+          redirect_to tv_shows_path
+        end
+      end
+    end
+
   end
 
   # GET /tv_shows/new
@@ -28,6 +36,13 @@ class TvShowsController < ApplicationController
 
   # GET /tv_shows/1/edit
   def edit
+    # Must check if the one editing is the Admin or Owner
+    if not current_user.admin?
+      if current_user.id != @tv_show.user_id
+        redirect_to tv_shows_path
+      end
+    end
+
   end
 
   # POST /tv_shows
