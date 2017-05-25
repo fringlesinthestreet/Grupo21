@@ -282,7 +282,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.2, >= 4.2.1)
-  google-api-client (< 0.9)
+  google-api-client
   instagram
   jbuilder (~> 2.5)
   jquery-rails

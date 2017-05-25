@@ -43,7 +43,7 @@ gem 'omniauth-instagram'
 gem 'twitter'
 gem 'instagram'
 gem 'omniauth-google-oauth2'
-gem 'google-api-client', '<0.9', require: 'google/api_client'
+gem 'google-api-client', require: 'google/api_client'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
