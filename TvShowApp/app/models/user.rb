@@ -10,13 +10,29 @@ class User < ApplicationRecord
   # has_many :children, :class_name => 'User', :dependent => :destroy
   # belongs_to :parent, :class_name => 'User'
 
+  # Login con FACEBOOK
+  devise :omniauthable, :omniauth_providers => [:facebook]
+
   # Validaciones:
   validates :name, uniqueness: {:case_sensitive => false}
-  validates :email, :name, :birthday, :presence => true
+  validates :email, :name, :presence => true
   validate :validate_username
   validate :validate_age
 
   attr_accessor :login
+
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      #user.birthday = Date.strptime(auth.extra.raw_info.birthday,'%d/%m/%Y')
+    end
+  end
+
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
@@ -30,11 +46,13 @@ class User < ApplicationRecord
   private
 
   def validate_age
-      if birthday.present? && birthday > 1.years.ago
+    if birthday.present?
+      if birthday > 1.years.ago
           errors.add(:birthday, 'You should be over 1 years old.')
       elsif birthday < 110.years.ago
           errors.add(:birthday, 'You should have less than 110 years.')
       end
+    end
   end
 
 
