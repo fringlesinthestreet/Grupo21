@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" ,  :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show, :destroy]
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   # root :to => 'tvshow', :constraints => {user_signed_in?}
   root :to => 'home#index'
 
