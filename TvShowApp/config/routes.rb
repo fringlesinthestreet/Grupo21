@@ -10,14 +10,15 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :create_follower
+      post :auxiliar_page
     end
   end
 
   # root :to => 'tvshow', :constraints => {user_signed_in?}
   root :to => 'home#index'
 
-
+  resources :relationships,       only: [:create, :destroy]
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

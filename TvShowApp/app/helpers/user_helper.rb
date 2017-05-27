@@ -25,4 +25,55 @@ module UserHelper
       "None"
     end
   end
+
+  def new_mail
+    email = current_user.email + "1"
+    bol = true
+    while bol == true do
+      busqueda = User.find_by(:email => email)
+      if busqueda.nil?
+        bol = false
+      else
+        email = email + "1"
+      end
+    end
+    email
+
+  end
+
+
+     def create_follower
+       # Aqui pongo cosas para evitar que cualquiera cree hijos
+
+       if !user_signed_in?
+         redirect_to tv_shows_path
+       end
+
+       if current_user.admin?
+         redirect_to tv_shows_path
+       end
+
+       if current_user.child?
+         redirect_to tv_shows_path
+       end
+       @user_new = User.new
+       @user_new.email = current_user.email
+
+
+     end
+
+     def auxiliar_page
+
+
+       @variable = User.create(params[:user].permit(:email, :name, :birthday, :password, :password_confirmation))
+       @variable.child = true
+       @variable.save!
+
+       redirect_to user_shows_path
+
+
+
+     end
+
+
 end

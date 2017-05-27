@@ -10,6 +10,15 @@
 <% end %>
 <br>
 <p> wow! much information! </p>
+<% if user_signed_in? %>
+  <% unless current_user.admin? %>
+    <% unless current_user.child? %>
+
+      <p>Create an asociated Child Account: <%= link_to "Create", create_follower_user_path  %></p>
+
+    <% end %>
+  <% end %>
+<% end %>
 <br>
 
 <% if current_user.admin? # es el admin %>
@@ -23,6 +32,7 @@
       <th>Mail</th>
       <th>Full Name</th>
       <th>Age</th>
+      <th>Child</th>
     </tr>
   </thead>
 
@@ -33,6 +43,7 @@
         <td><%= u.email %></td>
         <td><%= full_name(u) %></td>
         <td><%= age(u) %></td>
+        <td><%= u.child %></td>
         <% if not u.admin? %>
           <td><%= link_to "Destroy", u, method: :delete, data: { confirm: "You sure?" } %></td>
         <% end %>

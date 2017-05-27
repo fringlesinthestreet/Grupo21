@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tv_show.name %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @tv_show.genre %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @tv_show.country %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @tv_show.language %>
+</p>
+
+<p>
+  <strong>Actors:</strong>
+  <%= @tv_show.actors %>
+</p>
+
+<p>
+  <strong>Director:</strong>
+  <%= @tv_show.director %>
+</p>
+
+<p>
+  <strong>Seasons:</strong>
+  <%= @tv_show.seasons %>
+</p>
+
+<% if user_signed_in? %>
+  <% if current_user.admin? or current_user.id == @tv_show.user_id %>
+    <%= link_to 'Edit', edit_tv_show_path(@tv_show) %>
+  <% end %>
+<% end %>
