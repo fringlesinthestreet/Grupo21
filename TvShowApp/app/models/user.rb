@@ -25,7 +25,7 @@ class User < ApplicationRecord
   validates :name, uniqueness: {:case_sensitive => false}
   validates :email, :name, :presence => true
   validate :validate_username
-  validate :validate_age
+  #validate :validate_age
 
   attr_accessor :login
 
@@ -69,15 +69,17 @@ class User < ApplicationRecord
 
   private
 
-  def validate_age
-    if birthday.present?
-      if birthday > 1.years.ago
-          errors.add(:birthday, 'You should be over 1 years old.')
-      elsif birthday < 110.years.ago
-          errors.add(:birthday, 'You should have less than 110 years.')
-      end
-    end
-  end
+  #def validate_age
+  #  if defined? birthday
+  #    unless birthday.nil?
+  #      if birthday > 1.years.ago
+  #          errors.add(:birthday, 'You should be over 1 years old.')
+  #      elsif birthday < 110.years.ago
+  #          errors.add(:birthday, 'You should have less than 110 years.')
+  #      end
+  #    end
+  #  end
+  #end
 
 
   def validate_username

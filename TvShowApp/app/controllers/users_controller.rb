@@ -48,12 +48,12 @@ class UsersController < ApplicationController
   def auxiliar_page
 
 
-    @variable = User.create(params[:user].permit(:email, :name, :birthday, :password, :password_confirmation))
+    @variable = User.create(params[:user].permit(:email, :name, :password, :password_confirmation))
     @variable.child = true
     @variable.save!
     @variable.follow(current_user)
 
-    redirect_to user_shows_path
+    redirect_to user_path
 
 
 
