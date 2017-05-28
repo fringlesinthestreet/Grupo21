@@ -3,13 +3,7 @@
 <br>
 <body>
 <p> If you want to edit your profile, please go to <%= link_to "Edit Profile", edit_user_registration_path %></p>
-<% if user_signed_in?%>
-  <% if not current_user.admin? %>
-    <p> You can create a related Child Account in the following link: <%= %> </p>
-  <% end %>
-<% end %>
-<br>
-<p> wow! much information! </p>
+
 <% if user_signed_in? %>
   <% unless current_user.admin? %>
     <% unless current_user.child? %>
