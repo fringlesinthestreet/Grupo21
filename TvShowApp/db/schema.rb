@@ -49,10 +49,6 @@ ActiveRecord::Schema.define(version: 20170527041847) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.text     "about"
-    t.date     "birthday"
     t.boolean  "admin",                  default: false
     t.boolean  "child",                  default: false
     t.string   "provider"
