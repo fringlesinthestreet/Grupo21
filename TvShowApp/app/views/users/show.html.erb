@@ -30,7 +30,6 @@
     <tr>
       <th>Name</th>
       <th>Mail</th>
-      <th>Full Name</th>
       <th>Child</th>
     </tr>
   </thead>
@@ -40,7 +39,6 @@
       <tr>
         <td><%= u.name %></td>
         <td><%= u.email %></td>
-        <td><%= full_name(u) %></td>
         <td><%= u.child %></td>
         <% if not u.admin? %>
           <td><%= link_to "Destroy", u, method: :delete, data: { confirm: "You sure?" } %></td>
