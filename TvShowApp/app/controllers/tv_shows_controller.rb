@@ -9,7 +9,11 @@ class TvShowsController < ApplicationController
   def index
     @tv_shows = TvShow.all
     if user_signed_in?
-      @my_tv_shows = TvShow.where(["user_id = :u", {u: current_user.id}])
+      if current_user.child?
+        @my_tv_shows = TvShow.where(["user_id = :u", {u: current_user.following[0].id}])
+      else
+        @my_tv_shows = TvShow.where(["user_id = :u", {u: current_user.id}])
+      end
     end
   end
 
@@ -20,7 +24,13 @@ class TvShowsController < ApplicationController
     if not @tv_show.user.admin?
       if user_signed_in?
         if current_user.id != @tv_show.user_id
-          redirect_to tv_shows_path
+          if current_user.child?
+            if @tv_show.user.id != current_user.following[0].id
+              redirect_to tv_shows_path
+            end
+          else
+            redirect_to tv_shows_path
+          end
         end
       end
     end
@@ -31,6 +41,9 @@ class TvShowsController < ApplicationController
   def new
     ## Lo cambie.. antes era esto:
     ## @tv_show = TvShow.new
+    if current_user.child?
+      redirect_to tv_shows_path
+    end
     @tv_show = current_user.tv_shows.build
   end
 
@@ -39,6 +52,9 @@ class TvShowsController < ApplicationController
     # Must check if the one editing is the Admin or Owner
     if not current_user.admin?
       if current_user.id != @tv_show.user_id
+        redirect_to tv_shows_path
+      end
+      if current_user.child?
         redirect_to tv_shows_path
       end
     end

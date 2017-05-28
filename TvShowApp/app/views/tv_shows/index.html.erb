@@ -50,8 +50,10 @@
             <td><%= tv_show.seasons %></td>
             <td><%= tv_show.user.name%></td>
             <td><%= link_to 'Detail', tv_show %></td>
-            <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
-            <td><%= link_to 'Delete', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% unless current_user.child? %>
+              <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
+              <td><%= link_to 'Delete', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
         <% @tv_shows.each do |tv_show| %>
@@ -94,5 +96,7 @@
 <br>
 
 <% if user_signed_in? %>
+  <% unless current_user.child? %>
   <%= link_to 'New Tv Show', new_tv_show_path %>
+  <% end %>
 <% end %>
