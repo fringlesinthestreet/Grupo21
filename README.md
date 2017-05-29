@@ -19,3 +19,4 @@ ________________________
 # Read me
 
 Documento de especificaciones del alumno.
+La app principal est en el subdirectorio "TvShowApp".
