@@ -1,2 +1,0 @@
-class Capitulo < ApplicationRecord
-end
