@@ -11,8 +11,8 @@ user = User.new
 user.id = 1
 user.name = 'admin'
 user.password = '123456'
+user.password_confirmation = '123456'
 user.email = 'admin@admin.com'
-user.encrypted_password = '123456'
 user.admin = true
 user.save!
 
