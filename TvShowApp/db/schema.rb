@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625221520) do
+ActiveRecord::Schema.define(version: 20170625223228) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20170625221520) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index [nil, nil], name: "index_relationships_on_watcher_id_and_watched_id", unique: true
+    t.index [nil], name: "index_relationships_on_watched_id"
+    t.index [nil], name: "index_relationships_on_watcher_id"
   end
 
   create_table "tv_shows", force: :cascade do |t|
@@ -78,6 +81,13 @@ ActiveRecord::Schema.define(version: 20170625221520) do
     t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "watching_relationships", force: :cascade do |t|
+    t.integer  "watcher_id"
+    t.integer  "watched_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

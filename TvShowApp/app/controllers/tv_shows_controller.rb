@@ -105,6 +105,13 @@ class TvShowsController < ApplicationController
     end
   end
 
+def following
+  @title = "Following"
+  @tvshow  = TvShow.find(params[:id])
+  @categories = @tvshow.following.paginate(page: params[:page])
+  #render 'show_follow'
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tv_show

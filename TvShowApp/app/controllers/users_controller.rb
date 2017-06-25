@@ -45,6 +45,13 @@ class UsersController < ApplicationController
 
   end
 
+def watching
+  @title = "Following"
+  @user  = User.find(params[:id])
+  @chapters = @user.watching.paginate(page: params[:page])
+  #render 'show_follow'
+end
+
   def auxiliar_page
 
 

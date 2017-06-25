@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers, :create_follower
+      get :following, :followers, :create_follower, :watching
       post :auxiliar_page
     end
   end
@@ -33,6 +33,14 @@ Rails.application.routes.draw do
       get :followers
     end
   end
+
+  resources :chapters do
+    member do
+      get :watchers
+    end
+  end
+
+  resources :watching_relationships,       only: [:create, :destroy]
 
   resources :categories_relationships,       only: [:create, :destroy]
 
