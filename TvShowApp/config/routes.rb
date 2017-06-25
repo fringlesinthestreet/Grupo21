@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :chapters
+  resources :categories
   ## Esto es para generar las rutas de TVShow
   resources :tv_shows
   ## Esto es para generar las rutas de Users

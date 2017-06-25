@@ -1,0 +1,42 @@
+<%= form_for(chapter) do |f| %>
+  <% if chapter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+
+      <ul>
+      <% chapter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :duracion %>
+    <%= f.time_select :duracion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :resumen %>
+    <%= f.text_area :resumen %>
+  </div>
+
+  <div class="field">
+    <%= f.label :numero %>
+    <%= f.number_field :numero %>
+  </div>
+
+  <div class="field">
+    <%= f.label :temporada %>
+    <%= f.number_field :temporada %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

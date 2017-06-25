@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  duracion: 2017-06-25 11:53:20
+  resumen: MyText
+  numero: 1
+  temporada: 1
+  nombre: MyString
+
+two:
+  duracion: 2017-06-25 11:53:20
+  resumen: MyText
+  numero: 1
+  temporada: 1
+  nombre: MyString

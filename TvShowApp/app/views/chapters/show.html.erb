@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duracion:</strong>
+  <%= @chapter.duracion %>
+</p>
+
+<p>
+  <strong>Resumen:</strong>
+  <%= @chapter.resumen %>
+</p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @chapter.numero %>
+</p>
+
+<p>
+  <strong>Temporada:</strong>
+  <%= @chapter.temporada %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @chapter.nombre %>
+</p>
+
+<%= link_to 'Edit', edit_chapter_path(@chapter) %> |
+<%= link_to 'Back', chapters_path %>
