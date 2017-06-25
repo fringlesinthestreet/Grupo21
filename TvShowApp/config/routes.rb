@@ -22,6 +22,19 @@ Rails.application.routes.draw do
 
   resources :relationships,       only: [:create, :destroy]
 
+  resources :tv_shows do
+    member do
+      get :following
+    end
+  end
+
+  resources :categories do
+    member do
+      get :followers
+    end
+  end
+
+  resources :categories_relationships,       only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
