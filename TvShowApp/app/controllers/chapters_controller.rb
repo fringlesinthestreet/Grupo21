@@ -20,6 +20,7 @@ class ChaptersController < ApplicationController
   # GET /chapters/new
   def new
     @chapter = Chapter.new
+    @tv_show = params[:tv_show]
   end
 
   # GET /chapters/1/edit
@@ -30,7 +31,9 @@ class ChaptersController < ApplicationController
   # POST /chapters.json
   def create
     @chapter = Chapter.new(chapter_params)
-
+    #render :text => params[:tv_show]
+    #@tv_show = TvShow.find(params[:tv_show])
+    #@chapter.tv_show = @tv_show
     respond_to do |format|
       if @chapter.save
         format.html { redirect_to @chapter, notice: 'Chapter was successfully created.' }
@@ -74,6 +77,6 @@ class ChaptersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chapter_params
-      params.require(:chapter).permit(:duracion, :resumen, :numero, :temporada, :nombre)
+      params.require(:chapter).permit(:duracion, :resumen, :numero, :temporada, :nombre, :tv_show)
     end
 end

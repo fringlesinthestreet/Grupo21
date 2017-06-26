@@ -17,10 +17,14 @@ class TvShowsController < ApplicationController
     end
   end
 
-  def new_chapter_show
-    @show = TvShow.find(params[:id])
-    redirect_to new_chapter_path
-  end
+#  def new_chapter_show
+#    @show = TvShow.find(params[:id])
+#    if @show.nil?
+#      redirect to root_url
+#    end
+#    session[:showid] = @show
+#    redirect_to new_chapter_path
+#  end
 
   # GET /tv_shows/1
   # GET /tv_shows/1.json
