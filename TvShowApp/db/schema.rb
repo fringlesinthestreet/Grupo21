@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20170625223228) do
     t.integer  "followed_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["followed_id"], name: "index_category_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_category_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_category_relationships_on_follower_id"
   end
 
   create_table "chapters", force: :cascade do |t|
@@ -81,6 +84,18 @@ ActiveRecord::Schema.define(version: 20170625223228) do
     t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "link"
+    t.string   "title"
+    t.datetime "published_at"
+    t.integer  "likes"
+    t.integer  "dislikes"
+    t.string   "uid"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["uid"], name: "index_videos_on_uid"
   end
 
   create_table "watching_relationships", force: :cascade do |t|

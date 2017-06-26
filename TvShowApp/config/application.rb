@@ -23,6 +23,8 @@ module TvShowApp
       :authentication => 'login',
       :enable_starttls_auto => true
     }
+	
+    config.active_record.observers = :video_observer
 
   end
 

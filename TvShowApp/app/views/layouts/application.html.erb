@@ -27,15 +27,15 @@
      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <span class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">TvShowApp</a>
-            </div>
+            </span>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <span class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                 	<% if user_signed_in? %>
                 		<li>
@@ -57,7 +57,7 @@
                     </li>
 
                 </ul>
-            </div>
+            </span>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
@@ -69,7 +69,6 @@
                 <h1 id="homeHeading">Keep track of all your series in one place!</h1>
                 <hr>
                 <p>With TvShowApp you can easily keep track of all the chapters you have seen from all those series you watch, so you can save all the time you waste trying to figure it out on your own.</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
             </div>
         </div>
     </header>
@@ -97,6 +96,22 @@
 					    <%= yield %>
                 </div>
             </div>
+        </div>
+	<div class="navbar navbar-inverse">
+		  <div class="container">
+		    <ul class="nav navbar-nav">
+		      <li><%= link_to 'Videos', root_path %></li>
+		      <li><%= link_to 'Add Video', new_video_path %></li>
+		    </ul>
+		  </div>
+		</div>
+
+		<div class="container">
+		  <% flash.each do |key, value| %>
+		    <div class="alert alert-<%= key %>">
+		      <%= value %>
+		    </div>
+		  <% end %>
         </div>
     </section>
 
