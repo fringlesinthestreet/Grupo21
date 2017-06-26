@@ -39,4 +39,7 @@
   <% if current_user.admin? or current_user.id == @tv_show.user_id %>
     <%= link_to 'Edit', edit_tv_show_path(@tv_show) %>
   <% end %>
+  <% if current_user.id == @tv_show.user_id %>
+    <%= link_to 'Add Chapter', new_chapter_show_tv_show_path %>
+  <% end %>
 <% end %>

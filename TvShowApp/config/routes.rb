@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :destroy]
 
-  resources :videos, only: [:index, :new, :create]
+  resources :videos, only: [:show, :index, :new, :create]
 
   resources :users do
     member do
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :tv_shows do
     member do
-      get :following
+      get :following, :new_chapter_show
     end
   end
 

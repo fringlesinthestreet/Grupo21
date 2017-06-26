@@ -4,7 +4,12 @@ class ChaptersController < ApplicationController
   # GET /chapters
   # GET /chapters.json
   def index
-    @chapters = Chapter.all
+    if @show.nil?
+      redirect_to tv_shows_path
+    else
+      @chapters = Chapter.where(["tv_show_id = :u", {u: @show.id}])
+    end
+
   end
 
   # GET /chapters/1

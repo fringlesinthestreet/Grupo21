@@ -1,5 +1,10 @@
 class VideosController < ApplicationController
+
   def index
+    @videos = Video.order('created_at DESC')
+  end
+
+  def show
     @videos = Video.order('created_at DESC')
   end
 
