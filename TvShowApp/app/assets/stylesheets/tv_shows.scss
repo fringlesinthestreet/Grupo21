@@ -1,4 +1,26 @@
 // Place all the styles related to the TvShows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+	width: 100%;
+}
 
+th {
+	height: 100%;
+	background-color: DarkOrange;
+	font-size: 130%;
+	border-right: 5px solid DarkOrange;
+}
+
+td {
+	font-size: 125%;
+	border: 5px solid white;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+
+}
+
+td, th {
+	text-align: center;
+	padding: 50px;
+}
