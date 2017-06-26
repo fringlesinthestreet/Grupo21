@@ -1,7 +1,7 @@
 <div class="jumbotron">
    <div class="container">
-       <h1>Share your videos with the world!</h1>
-          <p>Click the button below to share your video from YouTube.</p>
+       <h1>Watch trailers of your favorite series!</h1>
+          <p>Click the button below to share a video from YouTube.</p>
             <p> <%= link_to 'Add video now!', new_video_path, class: 'btn btn-primary btn-lg' %> </p>
           </div>
 </div>
@@ -20,8 +20,6 @@
                                     "https://www.youtube.com/watch?v=#{video.uid}", target: '_blank' %>
                         <div class="caption">
                           <h5><%= video.title %></h5>
-                          <p>Published at <%= video.published_at.strftime('%-d %B %Y %H:%M:%S') %></p>
-                          <p>
                             <span class="glyphicon glyphicon glyphicon-thumbs-up"></span> <%= video.likes %>
                             <span class="glyphicon glyphicon glyphicon-thumbs-down"></span> <%= video.dislikes %>
                           </p>
