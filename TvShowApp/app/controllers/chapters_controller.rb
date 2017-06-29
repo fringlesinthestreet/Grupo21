@@ -31,8 +31,15 @@ class ChaptersController < ApplicationController
   # POST /chapters
   # POST /chapters.json
   def create
-    @tv_show = TvShow.find(params[:tv_show])
+    @tv_show = TvShow.find(chapter_params[:tv_show])
+    chapter_params.delete :tv_show
     @chapter = @tv_show.chapter.build
+    @chapter.nombre = chapter_params[:nombre]
+    @chapter.duracion = chapter_params[:duracion]
+    @chapter.resumen = chapter_params[:resumen]
+    @chapter.numero = chapter_params[:numero]
+    @chapter.temporada = chapter_params[:temporada]
+
     #@chapter = Chapter.new(chapter_params)
     #render :text => params[:tv_show]
     #@tv_show = TvShow.find(params[:tv_show])
@@ -80,6 +87,8 @@ class ChaptersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chapter_params
-      params.require(:chapter).permit(:duracion, :resumen, :numero, :temporada, :nombre)
+      params.require(:chapter).permit(:duracion, :resumen, :numero, :temporada, :nombre, :tv_show)
     end
+
+
 end
