@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625223228) do
+ActiveRecord::Schema.define(version: 20170629031143) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,9 +23,6 @@ ActiveRecord::Schema.define(version: 20170625223228) do
     t.integer  "followed_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["followed_id"], name: "index_category_relationships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_category_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_category_relationships_on_follower_id"
   end
 
   create_table "chapters", force: :cascade do |t|
@@ -36,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170625223228) do
     t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "tv_show_id"
+    t.index ["tv_show_id"], name: "index_chapters_on_tv_show_id"
   end
 
   create_table "relationships", force: :cascade do |t|
