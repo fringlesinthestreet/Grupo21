@@ -19,10 +19,10 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
 
-  has_many :active_relationships,  class_name:  "WatchingRelationship",
-                                   foreign_key: "watcher_id",
-                                   dependent:   :destroy
-  has_many :watching, through: :active_relationships,  source: :watched
+  #has_many :active_relationships,  class_name:  "WatchingRelationship",
+  #                                 foreign_key: "watcher_id",
+  #                                 dependent:   :destroy
+  #has_many :watching, through: :active_relationships,  source: :watched
 
   # Login con FACEBOOK
   devise :omniauthable, :omniauth_providers => [:facebook]
